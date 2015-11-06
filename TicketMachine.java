@@ -27,7 +27,7 @@ public class TicketMachine
         balance = 0;
         total = 0;
     }
-
+       
     /**
      * @Return The price of a ticket.
      */
@@ -98,5 +98,16 @@ public class TicketMachine
         amountToRefund = balance;
         balance = 0;
         return amountToRefund;
+    }
+    
+    /**
+     * Vacia la maquina de monedas y devuelve la cantidad de dinero que hay en la maquina
+     */
+    public int emptyMachine()
+    {
+        int saveTotal;
+        saveTotal = total;
+        total = 0;
+        return saveTotal;
     }
 }

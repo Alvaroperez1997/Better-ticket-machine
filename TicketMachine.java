@@ -17,17 +17,42 @@ public class TicketMachine
     private int balance;
     // The total amount of money collected by this machine.
     private int total;
+    
+    private boolean discount;
 
     /**
      * Create a machine that issues tickets of the given price.
      */
-    public TicketMachine(int cost)
+    public TicketMachine(int cost,boolean descuento)
     {
-        price = cost;
-        balance = 0;
-        total = 0;
+        if (descuento == true){
+            price = cost / 2;
+            balance = 0;
+            total = 0;
+            discount = descuento;
+        }
+        else{
+            price = cost;
+            balance = 0;
+            total = 0;
+            discount = descuento;
+        }
     }
-       
+    
+    public void ticketMachineWithDiscount()
+    {
+        if (discount == true) {
+            System.out.println("Esta maquina si realiza descuento");
+            System.out.println("# " + price + " cents.");
+            System.out.println("##################");
+        }
+        else {
+            System.out.println("Esta maquina no realiza descuento");
+            System.out.println("# " + price + " cents.");
+            System.out.println("##################");
+        }
+    }
+    
     /**
      * @Return The price of a ticket.
      */
@@ -106,9 +131,11 @@ public class TicketMachine
      */
     public int emptyMachine()
     {
-        int saveTotal;
-        saveTotal = total;
-        total = 0;
-        return saveTotal;
+       int recaudacion = -1;
+       if (balance == 0) {
+           recaudacion = total;
+           total = 0;
+       }
+       return recaudacion;
     }
 }
